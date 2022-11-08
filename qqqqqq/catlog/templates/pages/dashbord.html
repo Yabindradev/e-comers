@@ -1,0 +1,87 @@
+{% extends 'pages/dmain.html'%}
+{% block body %}
+<div class="contat">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Welcome back</strong> Username.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
+                class="fa-solid fa-x"></i></button>
+    </div>
+</div>
+
+    <h3>Dashbord</h3>
+    <div class="top-header">
+        <h5>Your Store Statistics</h5>
+    </div>
+    <div class="sell-chart">
+        <div class="main">
+            <div class="order">
+                <small>Total Orders</small>
+            </div>
+
+            <div class="order">
+                <small>Total Orders</small>
+            </div>
+
+            <div class="order">
+                <small>Total Orders</small>
+            </div>
+
+            <div class="order">
+                <small>Total Orders</small>
+            </div>
+
+            <div class="order">
+                <small>Total Orders</small>
+            </div>
+        </div>
+        <div class="chart">
+            <canvas id="myChart"></canvas>
+        </div>
+        </div>
+
+
+    <script>
+        const labels = [
+            '7 a.m',
+            '9 a.m',
+            '11 p.m',
+            '13 p.m',
+            '15 p.m',
+            '17 p.m',
+            '19 p.m',
+            '21 p.m',
+            '23 p.m',
+            '1 a.m',
+            '3 a.m',
+            '5 a.m',
+
+
+
+
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'LATEST ORDERS(LAST 24 HOURS',
+                backgroundColor: 'rgb(250, 15, 250)',
+                borderColor: 'rgb(250, 15, 15)',
+                data: [0, 10, 5, 2, 20, 30, 50, 10, 11, 23, 20, 0],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+    </script>
+
+    {% endblock %}

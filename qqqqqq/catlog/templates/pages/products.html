@@ -1,0 +1,152 @@
+{% extends 'pages/dmain.html'%}
+{% block body %}
+<style>
+    .pages{
+          margin-left: 15%;
+         padding: 1px 16px;
+    }
+    .create{
+        border-radius: 10px;
+        margin-top: 20px;
+        width: 100%;
+        height: 160px;
+         border: 1px solid black;
+
+    }
+          .search{
+        border-radius: 10px;
+        margin-top: 50px;
+        width: 100%;
+        height: 160px;
+         border: 1px solid black;
+
+    }
+    .text{
+        height: 50px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        background-color: rgb(117, 106, 106);
+        color: white;
+    }
+    .all-products{
+        margin-top: 50px;
+        border: 1px solid silver;
+        border-radius: 11px;
+    }
+    #customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #193a66;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+form{
+    margin-top: 20px;
+    margin-left: 40px;
+}
+input[type=text],input[type=number] {
+  width: 20%;
+  padding: 10px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+input[type=submit]{
+  padding: 10px 20px;
+  background-color: rgb(86, 12, 205);
+  color: white;
+  border: none;
+  border-radius:    10px;
+  margin-left: 20px;
+
+}
+p{
+    margin-top: 20px;
+    margin-left: 40px;
+    font-size: 25px;
+    font-weight: bold;
+}
+p a{
+  padding: 10px 20px;
+  border-radius: 3px;
+    margin-left: 30px;
+    background-color: rgb(86, 12, 205);
+    color: white;
+
+
+}
+</style>
+<div class="pages">
+   
+<h2>Produt</h2>
+
+
+<div class="create">
+    <div class="text">
+    <h3> <i class="fa-solid fa-plus"></i> Create New Products</h3>
+    </div>
+    <p>Create new products  <a href="create"><i class="fa-solid fa-plus">  </i>New products</a></p>
+</div>
+<div class="search">
+    <div class="text">
+    <h2><i class="fa-solid fa-magnifying-glass-plus"></i> Search Products</h2>
+    </div>
+    <form>
+        UPC: <input type="number">
+               Prducts title : <input type="text">
+        <input type="submit"  value="Search">
+    </form>
+</div>
+
+
+<div class="all-products">
+    <div class="text">
+        <h2>Products</h2>
+    </div>
+
+<table id="customers">
+    <tr>
+        <th>Title</th>
+        <th>UPC</th>
+        <th>Price</th>
+        <th>Images</th>
+        <th>Product type</th>
+        <th>Stock records</th>
+        <th>Is public</th>
+        <th>Date updated</th>
+        <th>Action</th>
+    </tr>
+        {% for products in products %}
+
+    <tr>
+        <td> {{products.title}}</td>
+        <td> {{products.product_code_number}}</td>
+        <td> {{products.price}}</td>
+        <td> {{products.first_images}}</td>
+        <td> {{products.category}}</td>
+        <td> {{products.is_stock}}</td>
+        <td> {{products.is_public}}</td>
+        <td> {{products.posted_at}}</td>
+    </tr>
+        {%endfor%}
+   </table>
+</div>
+</div>
+{% endblock %}
