@@ -8,49 +8,110 @@
 </head>
 <body>
 <style>
-        main {
-         margin: 0;
-         padding: 0;
-         width: 18%;
-         background-color: #f1f1f1;
-         position: fixed;
-         height: 100%;
-         overflow: auto;
-     }
-        ul {
-         list-style-type: none;
-     }
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    main{
+        width: 15%;
+        height: 100%;
+        background-color: rgb(194, 203, 203);
+    }
+    ul{
+        height: 100%;
+        list-style-type: none;
+    }
+    .menu{
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+    }
 
-     li a {
-         display: block;
-         color: #000;
-         padding: 25px 16px;
-         text-decoration: none;
-         text-transform: capitalize;
-         font-size: 25px;
-
-     }
-     a:hover{
-        background-color: rgb(233, 227, 233);
-     }
+    .menu a {
+  display: block;
+  color: black;
+  padding: 30px;
+  text-decoration: none;
+  font-size: 20px;
+}
+    .menu button {
+  display: block;
+  color: black;
+  padding: 30px;
+  text-decoration: none;
+  font-size: 20px;
+}
+.contat{
+    margin-left: 20%;
+    padding: 1px 16px;
+}
+button{
+    border: none;
+}
+.tabcontent {
+  color: black;
+  display: none;
+  height: 100%;
+}
 </style>
 <main>
     <div class="logo">
-        <h2>Account</h2>
     </div>
     <div class="menu">
         <ul>
-            <li class="active"><a data-toggle="tab" href="#overviews"><a href="">Overview</a></li>
-            <li><a href="">Order</a></li>
-            <li><a href="">Payment</a></li>
-            <li><a href="">feedback</a></li>
-            <li><a href="">Shipping address</a></li>
-            <li><a href="">Setting</a></li>
+            <li><button class="tablink" onclick="openPage('Home', this)" id="defaultOpen">Home</button></li>
+            <li><button class="tablink" onclick="openPage('Order', this)">Order</button></li>
+            <li><button class="tablink" onclick="openPage('Payment', this)">Payment</button></li>
+            <li><button class="tablink" onclick="openPage('Shipping', this)">Shipping Address</button></li>
+            <li><button class="tablink" onclick="openPage('Setting', this)">Setting</button></li>
             <li><a href="">Help Center</a></li>
             <li><a href="">Return to pages</a></li>
         </ul>
     </div>
-</main>
+    </main>
+    <div class="contat">
+    <div id="Home" class="tabcontent">
+        <h3>Home</h3>
+    </div>
+
+    <div id="Order" class="tabcontent">
+        <h3>0rder</h3>
+    </div>
+
+    <div id="Payment" class="tabcontent">
+        <h3>Payment</h3>
+    </div>
+
+    <div id="Shipping" class="tabcontent">
+        <h3>Shipping</h3>
+    </div>
+    <div id="Setting" class="tabcontent">
+        <h3>Setting</h3>
+    </div>
+    </div>
+
+<script>
+    function openPage(pageName, elmnt, ) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor 
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
 </body>
 
 </html>
