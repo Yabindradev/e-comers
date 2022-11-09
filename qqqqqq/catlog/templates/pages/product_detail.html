@@ -1,0 +1,10 @@
+{% extends 'pages/home.html'%}
+{% load static %}
+
+
+{% block body %}
+    <h2>all derilas</h2>
+    <h1>{{ object.title }}</h1>
+    <p>{{ object.description }}</p>
+    <p>{{ object.price }}</p>
+{% endblock %}

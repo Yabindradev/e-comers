@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'pages/home.html'%}
+{% block title %} login {% endblock %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% block body %}
 <style>
     *{
         margin: 0;
         padding: 0;
     }
+
     main{
         width: 15%;
         height: 100%;
@@ -24,19 +21,17 @@
     .menu{
   margin: 0;
   padding: 0;
-  width: 20%;
   background-color: #f1f1f1;
   position: fixed;
   height: 100%;
-  overflow: auto;
     }
 
     .menu a {
-  display: block;
   color: black;
   padding: 30px;
   text-decoration: none;
   font-size: 20px;
+  font-weight: bold;
 }
     .menu button {
   display: block;
@@ -44,6 +39,7 @@
   padding: 30px;
   text-decoration: none;
   font-size: 20px;
+  font-weight: bold;
 }
 .contat{
     margin-left: 20%;
@@ -57,13 +53,41 @@ button{
   display: none;
   height: 100%;
 }
+#Home{
+    margin-top: 30px;
+    margin-left: 30px;
+    background-color: white;
+}
+#Shipping{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+#Shipping a{
+    margin-top: 70px;
+    margin-left: 30px;
+    margin-bottom: 50px;
+    padding: 15px 20px;
+    background-color: blue;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20;
+    color: white;
+}
+.myForm{
+    margin-top: 90px;
+}
+#Shipping h3{
+    margin-bottom: 30px;
+}
 </style>
 <main>
     <div class="logo">
     </div>
     <div class="menu">
         <ul>
-            <li><button class="tablink" onclick="openPage('Home', this)" id="defaultOpen">Home</button></li>
+            <li><button class="tablink" onclick="openPage('Home', this)" id="defaultOpen">Overviews</button></li>
             <li><button class="tablink" onclick="openPage('Order', this)">Order</button></li>
             <li><button class="tablink" onclick="openPage('Payment', this)">Payment</button></li>
             <li><button class="tablink" onclick="openPage('Shipping', this)">Shipping Address</button></li>
@@ -75,8 +99,9 @@ button{
     </main>
     <div class="contat">
     <div id="Home" class="tabcontent">
-        <h3>Home</h3>
+        <h3>Yabindra Bhujel</h3>
     </div>
+    
 
     <div id="Order" class="tabcontent">
         <h3>0rder</h3>
@@ -87,12 +112,27 @@ button{
     </div>
 
     <div id="Shipping" class="tabcontent">
-        <h3>Shipping</h3>
+        <h3> My Shipping Address </h3>
+        {% if address in user_address %}
+        <h2>Your address</h2>
+        {% else %}
+        <a href="">Add New Address</a>
+        <div class="myForm">
+            <div class='col-sm-6'>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% crispy user_address %}
+                <button type="submit" class="btn btn-secondary btn-lg">POST</button>
+            </form>
+            {% endif %}
+            </div>
+        </div>
     </div>
     <div id="Setting" class="tabcontent">
         <h3>Setting</h3>
     </div>
     </div>
+
 
 <script>
     function openPage(pageName, elmnt, ) {
@@ -112,6 +152,5 @@ button{
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
 </script>
-</body>
 
-</html>
+{% endblock %}

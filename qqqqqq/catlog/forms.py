@@ -16,6 +16,6 @@ class CategoryForm(ModelForm):
 
 class CustomerForm(ModelForm):
     class Meta:
-        model = Category
+        model = Customer
         fields = '__all__'
         

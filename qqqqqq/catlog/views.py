@@ -3,7 +3,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from.forms import ProductsFrom, CategoryForm, CustomerForm
@@ -63,8 +63,26 @@ def logout(request):
 
 # -----------ecomers pages section --------------------------------
 
-def main(request):
-    return render(request, "pages/main.html")
+# def main(request):
+#     products = Product.objects.all()
+#     return render(request, "pages/main.html", {'products':products})
+
+
+def product_list(request):
+    queryset = Product.objects.all()  # list of objects
+    context = {
+        "object_list": queryset
+    }
+    return render(request, "pages/product_list.html", context)
+
+
+def product_detail(request, id):
+    obj = get_object_or_404(Product, id=id)
+    context = {
+        "object": obj
+    }
+    return render(request, "pages/product_detail.html", context)
+
 
 
 def help(request):
@@ -126,7 +144,13 @@ def category(request):
 
 # --------------------user informaction------------------------
 def user_informaction(request):
-    return render (request, 'user/user_profile.html')
+    user_address = CustomerForm()
+    if request.POST:
+        user_address = CustomerForm(request.POST)
+        if user_address.is_valid():
+            user_address.save()
+            return redirect('/')
+    return render (request, 'pages/user_profile.html', {'user_address':user_address})
 
 
 def overview(request):

@@ -1,0 +1,83 @@
+{% extends 'pages/home.html'%}
+{% load static %}
+
+
+{% block body %}
+<style>
+    .top img{
+        height: 10%;
+        width: 97%;
+        margin-left: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+    .products{
+    display: flex;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 50px;
+    margin-bottom: 200px;
+}
+
+.box{
+    margin: left;
+    width: 30%;
+    height: 400px;
+    margin-right: 38px;
+    margin-bottom: 40px;
+    border-radius: 5px;
+
+}
+.main img{
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+
+}
+.main p, strong{
+    margin-left: 6px;
+}
+.main a{
+    float: right;
+    text-decoration: none;
+    border: 1px solid rgb(2, 0, 128);
+    width: 60px;
+    margin-right: 10px;
+    text-align: center;
+    background-color: rgb(108, 38, 173);
+    color: white;
+    border-radius: 40px;
+}
+
+@media (max-width: 920px){
+     .products{
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+     }
+     .box{
+        width: 50%;
+        margin-left: 40px;
+     }
+}
+</style>
+<div class="top">
+    <img src="{% static 'images/6505894.jpg'%}">
+
+</div>
+<div class="products">
+    {% for object_list in object_list %}
+    <div class="box">
+        <div class="main">
+            <img src="{{ object_list.first_images.url }}">
+            <p>{{object_list.title}}</p>
+            <p>{{object_list.description|truncatechars:50}}</p>
+            <strong>{{object_list.price}}</strong>
+            <a href="">Cart</a>
+            <a href='{{ object_list.get_absolute_url}}'>more</a>
+        </div>
+</div>
+    {% endfor %}
+</div>
+
+{% endblock %}
