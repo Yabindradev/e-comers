@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import User
-from .city import YOUR_CITY, YOUR_PROVINCE
+from .city import YOUR_CITY, YOUR_PROVINCE, YOUR_SIZE
 from phone_field import PhoneField
 # Create your models here.
 
@@ -28,12 +28,13 @@ class Product(models.Model):
     posted_at = models.DateTimeField(auto_now_add=True)
     price = models.BigIntegerField()
     is_stock = models.BooleanField(default=True)
+    size = models.CharField(max_length=4, choices=YOUR_SIZE)
 
     def __str__(self):
         return self.title
     
     def get_absolute_url(self, ):
-        return reverse("catlog:product_detail", args=[self.id])
+        return reverse("product_detail", args=[self.id])
 
 
 class Customer(models.Model):
@@ -60,3 +61,10 @@ class Customer(models.Model):
     
     def __str__(self):
         return self.first_name
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE )
+    products = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_quantity = models.ImageField(null = False, blank = False)
+    add_time = models.DateField(auto_now= True)

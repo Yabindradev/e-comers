@@ -27,6 +27,8 @@ SECRET_KEY = 'django-insecure-fe^0h1g-bv0o&1r1oixcm#tpc+lft(kqq=a)lm$75gtsq)p=&5
 DEBUG = True
 
 ALLOWED_HOSTS = []
+SESSION_COOKIE_AGE = 86400
+CART_SESSION_ID = ('cart')
 
 
 # Application definition
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'crispy_forms',
     'phone_field',
+    'cart',
 ]
 
 
@@ -71,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'cart.context_processor.cart_total_amount'
             ],
         },
     },

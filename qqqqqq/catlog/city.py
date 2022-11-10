@@ -92,3 +92,12 @@ YOUR_PROVINCE = [
     ('Sagarmatha', 'Sagarmatha'),
     ('Seti', 'Seti')
 ]
+
+
+YOUR_SIZE = [
+    ('S','S'),
+    ('M','M'),
+    ('L','L'),
+    ('XL','XL'),
+    
+]

@@ -1,4 +1,5 @@
-
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
@@ -19,7 +20,7 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            return redirect('main')
+            return redirect('product_list')
         else:
             messages.info(request, "Username and password are invalid")
             return redirect('login')
@@ -76,6 +77,7 @@ def product_list(request):
     return render(request, "pages/product_list.html", context)
 
 
+
 def product_detail(request, id):
     obj = get_object_or_404(Product, id=id)
     context = {
@@ -84,7 +86,7 @@ def product_detail(request, id):
     return render(request, "pages/product_detail.html", context)
 
 
-
+@login_required(login_url="/login")
 def help(request):
     return render(request, 'pages/help.html')
 
@@ -97,6 +99,11 @@ def sell(request):
             
             
         return render(request, 'pages/sell.html', {'pforms':pforms})
+    
+    
+    
+def cart(request):
+    return render(request, 'pages/cart.html')
     
 # -----------ecomers pages section --------------------------------
 
@@ -164,3 +171,6 @@ def overview(request):
 # def detail(request, id):
 #     obj = get_object_or_404(Product, id = id)
 #     return render(request, 'pages/detail.html')
+# ----------------add to cart-----------------------------
+
+

@@ -1,10 +1,9 @@
 from django.urls import path
 from .import views
 
-app_name = 'catlog'
+# app_name = 'catlog'
 
 urlpatterns = [
-    # path('', views.main, name='main'),
     path('', views.product_list, name='product_list'),
     path('<int:id>/',views.product_detail, name='product_detail'),
     path('help', views.help, name='help'),
@@ -19,11 +18,8 @@ urlpatterns = [
     path('category', views.category, name='category'),
     path('user_informaction', views.user_informaction, name="user_informaction"),
     path('overview', views.overview, name="overview"),
+    path('cart', views.cart, name="cart"),
 
 
+    ]
 
-
-    
-
-    # path('<int:id>/',views.detail, name='detail'),
-]
